@@ -1,0 +1,65 @@
+body {
+    background-color: #f5f6fa;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+.header {
+    background: linear-gradient(90deg, #000328, #00458E);
+}
+
+.section-title {
+    font-weight: 900;
+    color: #000328;
+    letter-spacing: 1px;
+}
+
+.type-card {
+    background: white;
+    border-radius: 12px;
+    padding: 25px;
+    cursor: pointer;
+    border: 2px solid transparent;
+    transition: all 0.2s;
+}
+
+.type-card .icon {
+    font-size: 35px;
+    margin-bottom: 10px;
+}
+
+.type-card .icon i {
+    color: #00458e;
+}
+
+.type-card.active {
+    border-color: #000328;
+    background: #eef0f6;
+}
+
+.action-btn {
+    background: #eef0f6;
+    border-radius: 8px;
+    padding: 12px;
+    border: none;
+}
+
+.action-btn.active {
+    background: linear-gradient(90deg, #000328, #00458E);
+    color: white;
+}
+
+.input-box {
+    background: #eef0f6;
+
+    border-radius: 10px;
+    padding: 25px;
+}
+
+.input-box input {
+    margin-bottom: 20px;
+    border-color: #000328;
+}
+
+.input-box select {
+    border-color: #000328;
+}

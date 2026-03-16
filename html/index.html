@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" />
+    <title>Quantity Measurement</title>
+    <link rel="stylesheet" href="../css/style.css">
+</head>
+
+<body>
+    <div class="container-fluid p-0">
+        <div class="header text-center text-white py-3">
+            <h2>Welcome To Quantity Measurement</h2>
+        </div>
+
+        <div class="container mt-4">
+            <p class="section-title">CHOOSE TYPE</p>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="type-card active text-center">
+                        <div class="icon">
+                            <i class="fa-solid fa-ruler"></i>
+                        </div>
+                        <p>Length</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="type-card text-center">
+                        <div class="icon">
+                            <i class="fa-solid fa-weight-scale"></i>
+                        </div>
+                        <p>Weight</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="type-card text-center">
+                        <div class="icon">
+                            <i class="fa-solid fa-thermometer"></i>
+                        </div>
+                        <p>Temperature</p>
+                    </div>
+                </div>
+
+                <div class="col-md-3">
+                    <div class="type-card text-center">
+                        <div class="icon">
+                            <i class="fa-solid fa-flask"></i>
+                        </div>
+                        <p>Volume</p>
+                    </div>
+                </div>
+
+            </div>
+
+            <p class="section-title mt-4">CHOOSE ACTION</p>
+
+            <div class="row g-3">
+                <div class="col-md-4">
+                    <button class="btn action-btn active w-100">Comparison</button>
+                </div>
+
+                <div class="col-md-4">
+                    <button class="btn action-btn w-100">Conversion</button>
+                </div>
+
+                <div class="col-md-4">
+                    <button class="btn action-btn w-100">Arithmetic</button>
+                </div>
+            </div>
+
+            <div class="row mt-4 g-4">
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">FROM</label>
+                    <div class="input-box">
+                        <input type="number" class="form-control value-input" value="1">
+                        <select class="form-select">
+                            <option>Kilometer</option>
+                            <option>Meter</option>
+                            <option>Centimeter</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+                    <label class="form-label fw-bold">TO</label>
+                    <div class="input-box">
+                        <input type="number" class="form-control value-input" value="1000">
+                        <select class="form-select">
+                            <option>Meters</option>
+                            <option>Kilometers</option>
+                            <option>Centimeters</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+
+</html>

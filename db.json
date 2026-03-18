@@ -1,0 +1,156 @@
+{
+    "units": [
+        {
+            "id": 1,
+            "type": "length",
+            "label": "Kilometer",
+            "symbol": "km"
+        },
+        {
+            "id": 2,
+            "type": "length",
+            "label": "Meter",
+            "symbol": "m"
+        },
+        {
+            "id": 3,
+            "type": "length",
+            "label": "Centimeter",
+            "symbol": "cm"
+        },
+        {
+            "id": 4,
+            "type": "weight",
+            "label": "Kilogram",
+            "symbol": "kg"
+        },
+        {
+            "id": 5,
+            "type": "weight",
+            "label": "Gram",
+            "symbol": "g"
+        },
+        {
+            "id": 6,
+            "type": "weight",
+            "label": "Pound",
+            "symbol": "lb"
+        },
+        {
+            "id": 7,
+            "type": "temperature",
+            "label": "Celsius",
+            "symbol": "C"
+        },
+        {
+            "id": 8,
+            "type": "temperature",
+            "label": "Fahrenheit",
+            "symbol": "F"
+        },
+        {
+            "id": 9,
+            "type": "temperature",
+            "label": "Kelvin",
+            "symbol": "K"
+        },
+        {
+            "id": 10,
+            "type": "volume",
+            "label": "Liter",
+            "symbol": "L"
+        },
+        {
+            "id": 11,
+            "type": "volume",
+            "label": "Milliliter",
+            "symbol": "mL"
+        },
+        {
+            "id": 12,
+            "type": "volume",
+            "label": "Cubic Meter",
+            "symbol": "m3"
+        }
+    ],
+    "conversions": [
+        {
+            "id": 1,
+            "from": "km",
+            "to": "m",
+            "factor": 1000,
+            "formula": null
+        },
+        {
+            "id": 2,
+            "from": "m",
+            "to": "cm",
+            "factor": 100,
+            "formula": null
+        },
+        {
+            "id": 3,
+            "from": "km",
+            "to": "cm",
+            "factor": 100000,
+            "formula": null
+        },
+        {
+            "id": 4,
+            "from": "kg",
+            "to": "g",
+            "factor": 1000,
+            "formula": null
+        },
+        {
+            "id": 5,
+            "from": "lb",
+            "to": "kg",
+            "factor": 0.453592,
+            "formula": null
+        },
+        {
+            "id": 6,
+            "from": "L",
+            "to": "mL",
+            "factor": 1000,
+            "formula": null
+        },
+        {
+            "id": 7,
+            "from": "m3",
+            "to": "L",
+            "factor": 1000,
+            "formula": null
+        },
+        {
+            "id": 8,
+            "from": "C",
+            "to": "F",
+            "factor": null,
+            "formula": "(x*9/5)+32"
+        },
+        {
+            "id": 9,
+            "from": "F",
+            "to": "C",
+            "factor": null,
+            "formula": "(x-32)*5/9"
+        },
+        {
+            "id": 10,
+            "from": "C",
+            "to": "K",
+            "factor": null,
+            "formula": "x+273.15"
+        },
+        {
+            "id": 11,
+            "from": "K",
+            "to": "C",
+            "factor": null,
+            "formula": "x-273.15"
+        }
+    ],
+    "history": []
+}

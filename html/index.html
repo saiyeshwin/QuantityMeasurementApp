@@ -18,93 +18,125 @@
         </div>
 
         <div class="container mt-4">
+            <div id="error-banner" class="alert alert-danger d-none" role="alert"></div>
+
             <p class="section-title">CHOOSE TYPE</p>
 
             <div class="row">
                 <div class="col-md-3">
-                    <div class="type-card active text-center">
+                    <div class="type-card active text-center" data-type="Length">
                         <div class="icon">
                             <i class="fa-solid fa-ruler"></i>
                         </div>
-                        <p>Length</p>
+                        <p class="mb-0">Length</p>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="type-card text-center">
+                    <div class="type-card text-center" data-type="Weight">
                         <div class="icon">
                             <i class="fa-solid fa-weight-scale"></i>
                         </div>
-                        <p>Weight</p>
+                        <p class="mb-0">Weight</p>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="type-card text-center">
+                    <div class="type-card text-center" data-type="Temperature">
                         <div class="icon">
                             <i class="fa-solid fa-thermometer"></i>
                         </div>
-                        <p>Temperature</p>
+                        <p class="mb-0">Temperature</p>
                     </div>
                 </div>
 
                 <div class="col-md-3">
-                    <div class="type-card text-center">
+                    <div class="type-card text-center" data-type="Volume">
                         <div class="icon">
                             <i class="fa-solid fa-flask"></i>
                         </div>
-                        <p>Volume</p>
+                        <p class="mb-0">Volume</p>
                     </div>
                 </div>
-
             </div>
 
             <p class="section-title mt-4">CHOOSE ACTION</p>
 
-            <div class="row g-3">
+            <div class="row g-3" id="action-buttons">
                 <div class="col-md-4">
-                    <button class="btn action-btn active w-100">Comparison</button>
+                    <button class="btn action-btn active w-100" data-action="Conversion">Conversion</button>
                 </div>
 
                 <div class="col-md-4">
-                    <button class="btn action-btn w-100">Conversion</button>
+                    <button class="btn action-btn w-100" data-action="Comparison">Comparison</button>
                 </div>
 
                 <div class="col-md-4">
-                    <button class="btn action-btn w-100">Arithmetic</button>
+                    <button class="btn action-btn w-100" data-action="Arithmetic">Arithmetic</button>
+                </div>
+            </div>
+
+            <div id="operator-row" class="row mt-3 d-none">
+                <div class="col-12">
+                    <label class="form-label fw-bold">OPERATOR</label>
+                    <select id="operator-select" class="form-select">
+                        <option value="+">+</option>
+                        <option value="-">-</option>
+                        <option value="*">*</option>
+                        <option value="/">/</option>
+                    </select>
                 </div>
             </div>
 
             <div class="row mt-4 g-4">
                 <div class="col-md-6">
-                    <label class="form-label fw-bold">FROM</label>
+                    <label class="form-label fw-bold" for="from-value">FROM</label>
                     <div class="input-box">
-                        <input type="number" class="form-control value-input" value="1">
-                        <select class="form-select">
-                            <option>Kilometer</option>
-                            <option>Meter</option>
-                            <option>Centimeter</option>
+                        <input type="number" id="from-value" class="form-control value-input" value="1">
+                        <select id="from-unit" class="form-select">
+                            <option value="">Select unit</option>
                         </select>
                     </div>
                 </div>
 
                 <div class="col-md-6">
-                    <label class="form-label fw-bold">TO</label>
+                    <label class="form-label fw-bold" for="to-value">TO</label>
                     <div class="input-box">
-                        <input type="number" class="form-control value-input" value="1000">
-                        <select class="form-select">
-                            <option>Meters</option>
-                            <option>Kilometers</option>
-                            <option>Centimeters</option>
+                        <input type="number" id="to-value" class="form-control value-input" value="">
+                        <select id="to-unit" class="form-select">
+                            <option value="">Select unit</option>
                         </select>
                     </div>
                 </div>
             </div>
 
+            <div class="row mt-4">
+                <div class="col-12">
+                    <div class="input-box">
+                        <h5 class="fw-bold mb-3">Result</h5>
+                        <div id="result-display">
+                            <span id="result-value">--</span>
+                            <span id="result-unit"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mt-4 mb-5">
+                <div class="col-12">
+                    <div class="input-box">
+                        <h5 class="fw-bold mb-3">History</h5>
+                        <div id="history-list">
+                            <p class="mb-0 text-muted">No history yet</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-
     </div>
-
+    <script src="../javascript/api.js"></script>
+    <script src="../javascript/app.js"></script>
+    
 </body>
 
 </html>

@@ -1,3 +1,4 @@
+import { getUnits } from "./api.js";
 document.addEventListener("DOMContentLoaded", async () => {
   const state = {
     type: "Length",

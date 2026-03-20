@@ -1,8 +1,8 @@
 /**
- * Handles API calls for fetching units and conversion records from json-server.
- * Supports server-side filtering for measurement types and unit pairs.
+ * Saves successful calculation records to history using json-server.
+ * Sends the record object to the history collection with a POST request.
  * @author Developer
- * @version 4.0
+ * @version 5.0
  */
 
 const BASE_URL = "http://localhost:3000";
@@ -31,4 +31,24 @@ async function getConversion(from, to) {
   }
 
   return data[0];
+}
+
+async function saveHistory(record) {
+  try {
+    const res = await fetch(`${BASE_URL}/history`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(record),
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Failed to save history:", error);
+  }
 }

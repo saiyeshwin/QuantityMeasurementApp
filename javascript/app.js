@@ -1,17 +1,21 @@
-import { getUnits } from "./api.js";
+/**
+ * Handles type card selection by updating state and reloading unit dropdowns.
+ * Resets inputs and result whenever the measurement type changes.
+ * @author Developer
+ * @version 15.0
+ */
+
+const state = {
+  type: "Length",
+  action: "Conversion",
+  fromVal: null,
+  fromUnit: "",
+  toVal: null,
+  toUnit: "",
+  operator: "+",
+};
+
 document.addEventListener("DOMContentLoaded", async () => {
-  const state = {
-    type: "Length",
-    action: "Conversion",
-    fromVal: null,
-    fromUnit: "",
-    toVal: null,
-    toUnit: "",
-    operator: "+",
-  };
-
-  console.log("App Initialisation started...");
-
   attachEventListeners();
   await loadUnits("Length");
   toggleOperators(false);
@@ -20,8 +24,7 @@ document.addEventListener("DOMContentLoaded", async () => {
 
 async function loadUnits(type) {
   try {
-    const units = await getUnits(type);
-
+    const units = await getUnits(type.toLowerCase());
     const fromSelect = document.getElementById("from-unit");
     const toSelect = document.getElementById("to-unit");
 
@@ -29,12 +32,7 @@ async function loadUnits(type) {
     populateDropdown(toSelect, units);
   } catch (err) {
     console.error("Error loading units:", err);
-
-    if (err instanceof TypeError) {
-      showError("Server unavailable");
-    } else {
-      showError("Failed to load units");
-    }
+    showError("Failed to load units");
   }
 }
 
@@ -44,30 +42,45 @@ async function loadHistory() {
     renderHistory(history);
   } catch (err) {
     console.error("Error loading history:", err);
-
-    if (err instanceof TypeError) {
-      showError("Server unavailable");
-    } else {
-      showError("Failed to load history");
-    }
   }
 }
 
 function attachEventListeners() {
-  console.log("Event listeners attached.");
-}
+  const typeSelector = document.querySelector(".row");
+  const fromInput = document.getElementById("from-value");
+  const toInput = document.getElementById("to-value");
+  const fromSelect = document.getElementById("from-unit");
+  const toSelect = document.getElementById("to-unit");
 
-function toggleOperators(show) {
-  const operatorRow = document.getElementById("operator-row");
-  if (!operatorRow) return;
+  document.querySelectorAll(".type-card").forEach((card) => {
+    card.addEventListener("click", async () => {
+      try {
+        const units = await getUnits(card.dataset.type.toLowerCase());
 
-  if (show) {
-    operatorRow.classList.remove("d-none");
-  } else {
-    operatorRow.classList.add("d-none");
-  }
+        state.type = card.dataset.type;
+        setActive(typeSelector, card, ".type-card");
+
+        fromInput.value = "";
+        toInput.value = "";
+        showResult(0, "");
+
+        populateDropdown(fromSelect, units);
+        populateDropdown(toSelect, units);
+
+        state.fromUnit = "";
+        state.toUnit = "";
+      } catch (err) {
+        console.error("Error changing type:", err);
+        showError("Failed to load units");
+      }
+    });
+  });
 }
 
 function showError(msg) {
-  alert(msg);
+  const errorBanner = document.getElementById("error-banner");
+  if (!errorBanner) return;
+
+  errorBanner.textContent = msg;
+  errorBanner.classList.remove("d-none");
 }

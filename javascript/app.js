@@ -1,8 +1,8 @@
 /**
- * Handles type card selection by updating state and reloading unit dropdowns.
- * Resets inputs and result whenever the measurement type changes.
+ * Handles action tab selection by updating state and toggling the operator row.
+ * Clears the result display whenever the calculation mode changes.
  * @author Developer
- * @version 15.0
+ * @version 16.0
  */
 
 const state = {
@@ -47,6 +47,7 @@ async function loadHistory() {
 
 function attachEventListeners() {
   const typeSelector = document.querySelector(".row");
+  const actionSelector = document.getElementById("action-buttons");
   const fromInput = document.getElementById("from-value");
   const toInput = document.getElementById("to-value");
   const fromSelect = document.getElementById("from-unit");
@@ -73,6 +74,15 @@ function attachEventListeners() {
         console.error("Error changing type:", err);
         showError("Failed to load units");
       }
+    });
+  });
+
+  document.querySelectorAll(".action-btn").forEach((btn) => {
+    btn.addEventListener("click", () => {
+      state.action = btn.dataset.action;
+      setActive(actionSelector, btn, ".action-btn");
+      toggleOperators(state.action === "Arithmetic");
+      showResult(0, "");
     });
   });
 }

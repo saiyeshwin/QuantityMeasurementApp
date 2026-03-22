@@ -1,8 +1,8 @@
 /**
- * Saves successful calculation records to history using json-server.
- * Sends the record object to the history collection with a POST request.
+ * Loads saved calculation history records from json-server in newest-first order.
+ * Fetches all history entries and returns an empty array if loading fails.
  * @author Developer
- * @version 5.0
+ * @version 6.0
  */
 
 const BASE_URL = "http://localhost:3000";
@@ -50,5 +50,20 @@ async function saveHistory(record) {
     return await res.json();
   } catch (error) {
     console.error("Failed to save history:", error);
+  }
+}
+
+async function getHistory() {
+  try {
+    const res = await fetch(`${BASE_URL}/history?_sort=timestamp&_order=desc`);
+
+    if (!res.ok) {
+      throw new Error(`HTTP ${res.status}`);
+    }
+
+    return await res.json();
+  } catch (error) {
+    console.error("Failed to load history:", error);
+    return [];
   }
 }

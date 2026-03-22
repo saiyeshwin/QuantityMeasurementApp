@@ -1,8 +1,8 @@
 /**
- * Compares two measurement values after normalising them to a base unit.
- * Returns a readable sentence showing whether the first value is greater, less, or equal.
+ * Performs arithmetic operations between two measurement values in the same unit.
+ * Returns the numeric result rounded to 6 decimal places after applying the selected operator.
  * @author Developer
- * @version 8.0
+ * @version 9.0
  */
 
 function applyConversion(value, convObj) {
@@ -37,4 +37,26 @@ function compareValues(v1, u1, v2, u2, base1, base2) {
   }
 
   return `${v1} ${u1} is EQUAL to ${v2} ${u2}`;
+}
+
+function performArithmetic(v1, v2normalised, op) {
+  switch (op) {
+    case "+":
+      return parseFloat((v1 + v2normalised).toFixed(6));
+
+    case "-":
+      return parseFloat((v1 - v2normalised).toFixed(6));
+
+    case "*":
+      return parseFloat((v1 * v2normalised).toFixed(6));
+
+    case "/":
+      if (v2normalised === 0) {
+        throw new Error("Divide by zero");
+      }
+      return parseFloat((v1 / v2normalised).toFixed(6));
+
+    default:
+      throw new Error("Unknown operator");
+  }
 }

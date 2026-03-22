@@ -75,6 +75,7 @@ function renderHistory(records) {
   const list = document.querySelector("#history-list");
 
   if (!list) {
+    console.warn("History list element not found");
     return;
   }
 

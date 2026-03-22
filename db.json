@@ -1,156 +1,365 @@
 {
-    "units": [
-        {
-            "id": 1,
-            "type": "length",
-            "label": "Kilometer",
-            "symbol": "km"
-        },
-        {
-            "id": 2,
-            "type": "length",
-            "label": "Meter",
-            "symbol": "m"
-        },
-        {
-            "id": 3,
-            "type": "length",
-            "label": "Centimeter",
-            "symbol": "cm"
-        },
-        {
-            "id": 4,
-            "type": "weight",
-            "label": "Kilogram",
-            "symbol": "kg"
-        },
-        {
-            "id": 5,
-            "type": "weight",
-            "label": "Gram",
-            "symbol": "g"
-        },
-        {
-            "id": 6,
-            "type": "weight",
-            "label": "Pound",
-            "symbol": "lb"
-        },
-        {
-            "id": 7,
-            "type": "temperature",
-            "label": "Celsius",
-            "symbol": "C"
-        },
-        {
-            "id": 8,
-            "type": "temperature",
-            "label": "Fahrenheit",
-            "symbol": "F"
-        },
-        {
-            "id": 9,
-            "type": "temperature",
-            "label": "Kelvin",
-            "symbol": "K"
-        },
-        {
-            "id": 10,
-            "type": "volume",
-            "label": "Liter",
-            "symbol": "L"
-        },
-        {
-            "id": 11,
-            "type": "volume",
-            "label": "Milliliter",
-            "symbol": "mL"
-        },
-        {
-            "id": 12,
-            "type": "volume",
-            "label": "Cubic Meter",
-            "symbol": "m3"
-        }
-    ],
-    "conversions": [
-        {
-            "id": 1,
-            "from": "km",
-            "to": "m",
-            "factor": 1000,
-            "formula": null
-        },
-        {
-            "id": 2,
-            "from": "m",
-            "to": "cm",
-            "factor": 100,
-            "formula": null
-        },
-        {
-            "id": 3,
-            "from": "km",
-            "to": "cm",
-            "factor": 100000,
-            "formula": null
-        },
-        {
-            "id": 4,
-            "from": "kg",
-            "to": "g",
-            "factor": 1000,
-            "formula": null
-        },
-        {
-            "id": 5,
-            "from": "lb",
-            "to": "kg",
-            "factor": 0.453592,
-            "formula": null
-        },
-        {
-            "id": 6,
-            "from": "L",
-            "to": "mL",
-            "factor": 1000,
-            "formula": null
-        },
-        {
-            "id": 7,
-            "from": "m3",
-            "to": "L",
-            "factor": 1000,
-            "formula": null
-        },
-        {
-            "id": 8,
-            "from": "C",
-            "to": "F",
-            "factor": null,
-            "formula": "(x*9/5)+32"
-        },
-        {
-            "id": 9,
-            "from": "F",
-            "to": "C",
-            "factor": null,
-            "formula": "(x-32)*5/9"
-        },
-        {
-            "id": 10,
-            "from": "C",
-            "to": "K",
-            "factor": null,
-            "formula": "x+273.15"
-        },
-        {
-            "id": 11,
-            "from": "K",
-            "to": "C",
-            "factor": null,
-            "formula": "x-273.15"
-        }
-    ],
-    "history": []
+  "units": [
+    {
+      "id": "1",
+      "type": "length",
+      "label": "Kilometer",
+      "symbol": "km"
+    },
+    {
+      "id": "2",
+      "type": "length",
+      "label": "Meter",
+      "symbol": "m"
+    },
+    {
+      "id": "3",
+      "type": "length",
+      "label": "Centimeter",
+      "symbol": "cm"
+    },
+    {
+      "id": "4",
+      "type": "weight",
+      "label": "Kilogram",
+      "symbol": "kg"
+    },
+    {
+      "id": "5",
+      "type": "weight",
+      "label": "Gram",
+      "symbol": "g"
+    },
+    {
+      "id": "6",
+      "type": "weight",
+      "label": "Pound",
+      "symbol": "lb"
+    },
+    {
+      "id": "7",
+      "type": "temperature",
+      "label": "Celsius",
+      "symbol": "C"
+    },
+    {
+      "id": "8",
+      "type": "temperature",
+      "label": "Fahrenheit",
+      "symbol": "F"
+    },
+    {
+      "id": "9",
+      "type": "temperature",
+      "label": "Kelvin",
+      "symbol": "K"
+    },
+    {
+      "id": "10",
+      "type": "volume",
+      "label": "Liter",
+      "symbol": "L"
+    },
+    {
+      "id": "11",
+      "type": "volume",
+      "label": "Milliliter",
+      "symbol": "mL"
+    },
+    {
+      "id": "12",
+      "type": "volume",
+      "label": "Cubic Meter",
+      "symbol": "m3"
+    }
+  ],
+  "conversions": [
+    {
+      "id": "1",
+      "from": "km",
+      "to": "m",
+      "factor": 1000,
+      "formula": null
+    },
+    {
+      "id": "2",
+      "from": "m",
+      "to": "cm",
+      "factor": 100,
+      "formula": null
+    },
+    {
+      "id": "3",
+      "from": "km",
+      "to": "cm",
+      "factor": 100000,
+      "formula": null
+    },
+    {
+      "id": "4",
+      "from": "kg",
+      "to": "g",
+      "factor": 1000,
+      "formula": null
+    },
+    {
+      "id": "5",
+      "from": "lb",
+      "to": "kg",
+      "factor": 0.453592,
+      "formula": null
+    },
+    {
+      "id": "6",
+      "from": "L",
+      "to": "mL",
+      "factor": 1000,
+      "formula": null
+    },
+    {
+      "id": "7",
+      "from": "m3",
+      "to": "L",
+      "factor": 1000,
+      "formula": null
+    },
+    {
+      "id": "8",
+      "from": "C",
+      "to": "F",
+      "factor": null,
+      "formula": "(x*9/5)+32"
+    },
+    {
+      "id": "9",
+      "from": "F",
+      "to": "C",
+      "factor": null,
+      "formula": "(x-32)*5/9"
+    },
+    {
+      "id": "10",
+      "from": "C",
+      "to": "K",
+      "factor": null,
+      "formula": "x+273.15"
+    },
+    {
+      "id": "11",
+      "from": "K",
+      "to": "C",
+      "factor": null,
+      "formula": "x-273.15"
+    },
+    {
+      "id": "12",
+      "from": "m",
+      "to": "km",
+      "factor": 0.001,
+      "formula": null
+    },
+    {
+      "id": "13",
+      "from": "cm",
+      "to": "m",
+      "factor": 0.01,
+      "formula": null
+    },
+    {
+      "id": "14",
+      "from": "cm",
+      "to": "km",
+      "factor": 0.00001,
+      "formula": null
+    },
+    {
+      "id": "15",
+      "from": "g",
+      "to": "kg",
+      "factor": 0.001,
+      "formula": null
+    },
+    {
+      "id": "16",
+      "from": "kg",
+      "to": "lb",
+      "factor": 2.204623,
+      "formula": null
+    },
+    {
+      "id": "17",
+      "from": "mL",
+      "to": "L",
+      "factor": 0.001,
+      "formula": null
+    },
+    {
+      "id": "18",
+      "from": "L",
+      "to": "m3",
+      "factor": 0.001,
+      "formula": null
+    },
+    {
+      "id": "19",
+      "from": "F",
+      "to": "K",
+      "factor": null,
+      "formula": "(x-32)*5/9+273.15"
+    },
+    {
+      "id": "20",
+      "from": "K",
+      "to": "F",
+      "factor": null,
+      "formula": "((x-273.15)*9/5)+32"
+    }
+  ],
+  "history": [
+    {
+      "id": "2d89",
+      "type": "Length",
+      "action": "Conversion",
+      "expression": "1 km to km",
+      "result": 1,
+      "timestamp": "2026-03-22T13:09:16.638Z"
+    },
+    {
+      "id": "4c88",
+      "type": "Length",
+      "action": "Conversion",
+      "expression": "1 km to km",
+      "result": 1,
+      "timestamp": "2026-03-22T13:09:21.361Z"
+    },
+    {
+      "id": "f0f4",
+      "type": "Length",
+      "action": "Conversion",
+      "expression": "1 km to km",
+      "result": 1,
+      "timestamp": "2026-03-22T13:09:21.586Z"
+    },
+    {
+      "id": "1d20",
+      "type": "Length",
+      "action": "Conversion",
+      "expression": "1 km to km",
+      "result": 1,
+      "timestamp": "2026-03-22T13:09:23.593Z"
+    },
+    {
+      "id": "4006",
+      "type": "Length",
+      "action": "Conversion",
+      "expression": "10 km to km",
+      "result": 10,
+      "timestamp": "2026-03-22T13:09:24.990Z"
+    },
+    {
+      "id": "3912",
+      "type": "Length",
+      "action": "Conversion",
+      "expression": "100 km to km",
+      "result": 100,
+      "timestamp": "2026-03-22T13:09:25.161Z"
+    },
+    {
+      "id": "902d",
+      "type": "Length",
+      "action": "Conversion",
+      "expression": "1000 km to km",
+      "result": 1000,
+      "timestamp": "2026-03-22T13:09:25.618Z"
+    },
+    {
+      "id": "d282",
+      "type": "Length",
+      "action": "Conversion",
+      "expression": "1000 m to km",
+      "result": 1,
+      "timestamp": "2026-03-22T13:09:30.476Z"
+    },
+    {
+      "id": "c748",
+      "type": "Length",
+      "action": "Conversion",
+      "expression": "10000 m to km",
+      "result": 10,
+      "timestamp": "2026-03-22T13:09:33.094Z"
+    },
+    {
+      "id": "f516",
+      "type": "Length",
+      "action": "Comparison",
+      "expression": "10000 m compare 0 km",
+      "result": "10000 m is GREATER than 0 km",
+      "timestamp": "2026-03-22T13:09:36.534Z"
+    },
+    {
+      "id": "fad0",
+      "type": "Length",
+      "action": "Arithmetic",
+      "expression": "10000 m + 0 km",
+      "result": 10000,
+      "timestamp": "2026-03-22T13:09:39.725Z"
+    },
+    {
+      "id": "6dd3",
+      "type": "Length",
+      "action": "Arithmetic",
+      "expression": "10000 m + 100 km",
+      "result": 110000,
+      "timestamp": "2026-03-22T13:09:49.104Z"
+    },
+    {
+      "id": "b7ca",
+      "type": "Length",
+      "action": "Arithmetic",
+      "expression": "10000 cm + 100 km",
+      "result": 10010000,
+      "timestamp": "2026-03-22T13:09:51.688Z"
+    },
+    {
+      "id": "87c6",
+      "type": "Length",
+      "action": "Arithmetic",
+      "expression": "10000 km + 100 km",
+      "result": 10100,
+      "timestamp": "2026-03-22T13:09:54.870Z"
+    },
+    {
+      "id": "7adb",
+      "type": "Weight",
+      "action": "Conversion",
+      "expression": "12 kg to g",
+      "result": 12000,
+      "timestamp": "2026-03-22T13:10:32.313Z"
+    },
+    {
+      "id": "71de",
+      "type": "Weight",
+      "action": "Conversion",
+      "expression": "12 kg to lb",
+      "result": 26.455476,
+      "timestamp": "2026-03-22T13:10:38.958Z"
+    },
+    {
+      "id": "e260",
+      "type": "Volume",
+      "action": "Conversion",
+      "expression": "1 L to m3",
+      "result": 0.001,
+      "timestamp": "2026-03-22T13:10:47.040Z"
+    },
+    {
+      "id": "47d3",
+      "type": "Volume",
+      "action": "Conversion",
+      "expression": "12 L to m3",
+      "result": 0.012,
+      "timestamp": "2026-03-22T13:10:47.199Z"
+    }
+  ],
+  "$schema": "./node_modules/json-server/schema.json"
 }

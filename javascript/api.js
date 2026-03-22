@@ -55,12 +55,11 @@ async function saveHistory(record) {
 
 async function getHistory() {
   try {
-    const res = await fetch(`${BASE_URL}/history?_sort=timestamp&_order=desc`);
-
+    // v1+ syntax: prefix field with - for descending
+    const res = await fetch(`${BASE_URL}/history?_sort=-timestamp`);
     if (!res.ok) {
       throw new Error(`HTTP ${res.status}`);
     }
-
     return await res.json();
   } catch (error) {
     console.error("Failed to load history:", error);

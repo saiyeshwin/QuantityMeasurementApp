@@ -1,8 +1,8 @@
 /**
- * Handles action tab selection by updating state and toggling the operator row.
- * Clears the result display whenever the calculation mode changes.
+ * Executes calculations based on selected type and action, then updates result and history.
+ * Handles conversion, comparison, and arithmetic using the current app state.
  * @author Developer
- * @version 16.0
+ * @version 17.0
  */
 
 const state = {
@@ -19,7 +19,21 @@ document.addEventListener("DOMContentLoaded", async () => {
   attachEventListeners();
   await loadUnits("Length");
   toggleOperators(false);
+
+  const fromInput = document.getElementById("from-value");
+  const toInput = document.getElementById("to-value");
+  const fromSelect = document.getElementById("from-unit");
+  const toSelect = document.getElementById("to-unit");
+  const operatorSelect = document.getElementById("operator-select");
+
+  state.fromVal = parseFloat(fromInput.value);
+  state.toVal = parseFloat(toInput.value);
+  state.fromUnit = fromSelect.value;
+  state.toUnit = toSelect.value;
+  state.operator = operatorSelect ? operatorSelect.value : "+";
+
   await loadHistory();
+  calculate();
 });
 
 async function loadUnits(type) {
@@ -30,6 +44,13 @@ async function loadUnits(type) {
 
     populateDropdown(fromSelect, units);
     populateDropdown(toSelect, units);
+
+    if (units.length > 0) {
+      fromSelect.value = units[0].symbol;
+      toSelect.value = units[0].symbol;
+      state.fromUnit = fromSelect.value;
+      state.toUnit = toSelect.value;
+    }
   } catch (err) {
     console.error("Error loading units:", err);
     showError("Failed to load units");
@@ -46,12 +67,14 @@ async function loadHistory() {
 }
 
 function attachEventListeners() {
-  const typeSelector = document.querySelector(".row");
+  const typeSelector = document.getElementById("type-selector");
   const actionSelector = document.getElementById("action-buttons");
+
   const fromInput = document.getElementById("from-value");
   const toInput = document.getElementById("to-value");
   const fromSelect = document.getElementById("from-unit");
   const toSelect = document.getElementById("to-unit");
+  const operatorSelect = document.getElementById("operator-select");
 
   document.querySelectorAll(".type-card").forEach((card) => {
     card.addEventListener("click", async () => {
@@ -63,13 +86,20 @@ function attachEventListeners() {
 
         fromInput.value = "";
         toInput.value = "";
-        showResult(0, "");
+        showResult("—", "");
 
         populateDropdown(fromSelect, units);
         populateDropdown(toSelect, units);
 
-        state.fromUnit = "";
-        state.toUnit = "";
+        if (units.length > 0) {
+          fromSelect.value = units[0].symbol;
+          toSelect.value = units[0].symbol;
+        }
+
+        state.fromVal = null;
+        state.toVal = null;
+        state.fromUnit = fromSelect.value;
+        state.toUnit = toSelect.value;
       } catch (err) {
         console.error("Error changing type:", err);
         showError("Failed to load units");
@@ -82,9 +112,119 @@ function attachEventListeners() {
       state.action = btn.dataset.action;
       setActive(actionSelector, btn, ".action-btn");
       toggleOperators(state.action === "Arithmetic");
-      showResult(0, "");
+      showResult("—", "");
+      calculate();
     });
   });
+
+  fromInput.addEventListener("input", () => {
+    state.fromVal = parseFloat(fromInput.value);
+    calculate();
+  });
+
+  toInput.addEventListener("input", () => {
+    state.toVal = parseFloat(toInput.value);
+    calculate();
+  });
+
+  fromSelect.addEventListener("change", () => {
+    state.fromUnit = fromSelect.value;
+    calculate();
+  });
+
+  toSelect.addEventListener("change", () => {
+    state.toUnit = toSelect.value;
+    calculate();
+  });
+
+  if (operatorSelect) {
+    operatorSelect.addEventListener("change", () => {
+      state.operator = operatorSelect.value;
+      calculate();
+    });
+  }
+}
+
+async function calculate() {
+  try {
+    if (!Number.isFinite(state.fromVal) || !state.fromUnit) {
+      return;
+    }
+
+    let result;
+    let displayUnit = "";
+    let expression = "";
+
+    if (state.action === "Conversion") {
+      if (!state.toUnit) return;
+
+      if (state.fromUnit === state.toUnit) {
+        result = state.fromVal;
+      } else {
+        const conv = await getConversion(state.fromUnit, state.toUnit);
+        result = applyConversion(state.fromVal, conv);
+      }
+
+      document.getElementById("to-value").value = result;
+      displayUnit = state.toUnit;
+      expression = `${state.fromVal} ${state.fromUnit} to ${state.toUnit}`;
+      showResult(result, displayUnit);
+    } else if (state.action === "Comparison") {
+      if (!Number.isFinite(state.toVal) || !state.toUnit) return;
+
+      let base1 = state.fromVal;
+      let base2 = state.toVal;
+
+      if (state.fromUnit !== state.toUnit) {
+        const conv = await getConversion(state.toUnit, state.fromUnit);
+        base2 = applyConversion(state.toVal, conv);
+      }
+
+      result = compareValues(
+        state.fromVal,
+        state.fromUnit,
+        state.toVal,
+        state.toUnit,
+        base1,
+        base2,
+      );
+
+      expression = `${state.fromVal} ${state.fromUnit} compare ${state.toVal} ${state.toUnit}`;
+      showResult(result, "");
+    } else if (state.action === "Arithmetic") {
+      if (!Number.isFinite(state.toVal) || !state.toUnit) return;
+
+      let normalisedValue = state.toVal;
+
+      if (state.fromUnit !== state.toUnit) {
+        const conv = await getConversion(state.toUnit, state.fromUnit);
+        normalisedValue = applyConversion(state.toVal, conv);
+      }
+
+      result = performArithmetic(
+        state.fromVal,
+        normalisedValue,
+        state.operator,
+      );
+      displayUnit = state.fromUnit;
+      expression = `${state.fromVal} ${state.fromUnit} ${state.operator} ${state.toVal} ${state.toUnit}`;
+      showResult(result, displayUnit);
+    }
+
+    const record = {
+      type: state.type,
+      action: state.action,
+      expression: expression,
+      result: result,
+      timestamp: new Date().toISOString(),
+    };
+
+    await saveHistory(record);
+    const history = await getHistory();
+    renderHistory(history);
+  } catch (e) {
+    showResult("Error: " + e.message, "");
+  }
 }
 
 function showError(msg) {

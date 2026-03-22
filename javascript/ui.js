@@ -1,8 +1,8 @@
 /**
- * Displays the latest calculation result in the result panel.
- * Updates the result value and unit, then briefly adds a highlight effect.
+ * Shows or hides the operator row based on the selected action mode.
+ * Displays the operator selector only for arithmetic operations.
  * @author Developer
- * @version 12.0
+ * @version 13.0
  */
 
 function populateDropdown(selectEl, units) {
@@ -58,4 +58,15 @@ function showResult(value, unitSymbol) {
     resultValue.classList.remove("highlight");
     resultUnit.classList.remove("highlight");
   }, 1500);
+}
+
+function toggleOperators(show) {
+  const operatorSelector = document.querySelector("#operator-selector");
+
+  if (!operatorSelector) {
+    console.warn("Operator selector not found");
+    return;
+  }
+
+  operatorSelector.style.display = show ? "flex" : "none";
 }

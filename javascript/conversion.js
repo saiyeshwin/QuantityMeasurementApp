@@ -1,8 +1,8 @@
 /**
- * Applies a conversion using either a numeric factor or a formula string.
- * Returns the converted value rounded to 6 decimal places.
+ * Compares two measurement values after normalising them to a base unit.
+ * Returns a readable sentence showing whether the first value is greater, less, or equal.
  * @author Developer
- * @version 7.0
+ * @version 8.0
  */
 
 function applyConversion(value, convObj) {
@@ -21,4 +21,20 @@ function applyConversion(value, convObj) {
   } catch (error) {
     throw new Error("Bad formula");
   }
+}
+
+function compareValues(v1, u1, v2, u2, base1, base2) {
+  if (!Number.isFinite(base1) || !Number.isFinite(base2)) {
+    return "Invalid values — cannot compare";
+  }
+
+  if (base1 > base2) {
+    return `${v1} ${u1} is GREATER than ${v2} ${u2}`;
+  }
+
+  if (base1 < base2) {
+    return `${v1} ${u1} is LESS than ${v2} ${u2}`;
+  }
+
+  return `${v1} ${u1} is EQUAL to ${v2} ${u2}`;
 }

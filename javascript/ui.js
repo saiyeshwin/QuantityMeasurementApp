@@ -1,8 +1,8 @@
 /**
- * Sets the active class on the selected button or card within a group.
- * Removes active from sibling elements and applies it only to the clicked element.
+ * Displays the latest calculation result in the result panel.
+ * Updates the result value and unit, then briefly adds a highlight effect.
  * @author Developer
- * @version 11.0
+ * @version 12.0
  */
 
 function populateDropdown(selectEl, units) {
@@ -38,4 +38,24 @@ function setActive(parentEl, clickedEl, childSelector) {
   });
 
   clickedEl.classList.add("active");
+}
+
+function showResult(value, unitSymbol) {
+  const resultValue = document.querySelector("#result-value");
+  const resultUnit = document.querySelector("#result-unit");
+
+  if (!resultValue || !resultUnit) {
+    return;
+  }
+
+  resultValue.textContent = value === null ? "—" : value;
+  resultUnit.textContent = unitSymbol || "";
+
+  resultValue.classList.add("highlight");
+  resultUnit.classList.add("highlight");
+
+  setTimeout(() => {
+    resultValue.classList.remove("highlight");
+    resultUnit.classList.remove("highlight");
+  }, 1500);
 }

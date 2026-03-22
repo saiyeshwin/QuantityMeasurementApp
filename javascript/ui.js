@@ -1,8 +1,8 @@
 /**
- * Shows or hides the operator row based on the selected action mode.
- * Displays the operator selector only for arithmetic operations.
+ * Renders the calculation history list in newest-first order.
+ * Rebuilds the history panel from the provided records and shows an empty placeholder if needed.
  * @author Developer
- * @version 13.0
+ * @version 14.0
  */
 
 function populateDropdown(selectEl, units) {
@@ -69,4 +69,26 @@ function toggleOperators(show) {
   }
 
   operatorSelector.style.display = show ? "flex" : "none";
+}
+
+function renderHistory(records) {
+  const list = document.querySelector("#history-list");
+
+  if (!list) {
+    return;
+  }
+
+  records = records || [];
+  list.innerHTML = "";
+
+  if (!records.length) {
+    list.innerHTML = "<li>No history yet.</li>";
+    return;
+  }
+
+  records.forEach((r) => {
+    const li = document.createElement("li");
+    li.textContent = `${r.expression} = ${r.result} (${new Date(r.timestamp).toLocaleString()})`;
+    list.appendChild(li);
+  });
 }
